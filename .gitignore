@@ -1,0 +1,27 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Optional eslint cache
+.eslintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Build directory
+dist/
+
+# Public
+*.hot-update.js
+*.hot-update.json
+public/css/style.css
+public/**/*.bundle.js
+public/**/*.bundle.js.gz
+
+package-lock.json
