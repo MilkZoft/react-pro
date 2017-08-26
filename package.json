@@ -1,10 +1,22 @@
 {
   "name": "react-pro",
   "version": "1.0.0",
-  "description": "# Temas del Curso",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && npm run build-client && npm run build-server",
+    "build-client": "NODE_ENV=production BABEL_ENV=production node -r babel-register node_modules/.bin/webpack --progress --display-modules --config webpack/webpack.config.client.js",
+    "build-server": "NODE_ENV=production BABEL_ENV=production node -r babel-register node_modules/.bin/webpack --progress --config webpack/webpack.config.server.js",
+    "clean": "rimraf dist/ && rimraf public/app",
+    "lint": "eslint src",
+    "postmerge": "npm install",
+    "postrewrite": "npm install",
+    "precommit": "npm run lint",
+    "prepush": "npm run test",
+    "start": "npm run clean & NODE_ENV=development BABEL_ENV=development babel-node src/server",
+    "start-analyzer": "npm run clean && NODE_ENV=development BABEL_ENV=development ANALYZER=true babel-node src/server",
+    "start-production": "npm run build && NODE_ENV=production BABEL_ENV=production babel-node src/server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-client": "webpack --watch --config webpack/webpack.config.client.js",
+    "watch-server": "webpack --watch --config webpack/webpack.config.server.js"
   },
   "repository": {
     "type": "git",
@@ -12,10 +24,6 @@
   },
   "author": "Carlos Santana",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MilkZoft/react-pro/issues"
-  },
-  "homepage": "https://github.com/MilkZoft/react-pro#readme",
   "dependencies": {
     "express": "^4.15.4",
     "node-time-ago": "^1.0.0",
