@@ -14,7 +14,7 @@
     "start": "npm run clean & NODE_ENV=development BABEL_ENV=development babel-node src/server",
     "start-analyzer": "npm run clean && NODE_ENV=development BABEL_ENV=development ANALYZER=true babel-node src/server",
     "start-production": "npm run build && NODE_ENV=production BABEL_ENV=production babel-node src/server",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "watch-client": "webpack --watch --config webpack/webpack.config.client.js",
     "watch-server": "webpack --watch --config webpack/webpack.config.server.js"
   },
