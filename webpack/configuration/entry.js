@@ -18,6 +18,6 @@ export default type => {
   }
 
   entry.main.push('./client.js');
-
+  console.log(entry);
   return entry;
 };
