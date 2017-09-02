@@ -10,9 +10,7 @@ import html from './html';
 
 export default function serverRender() {
   return (req, res, next) => {
-    const markup = renderToString(
-      <App />
-    );
+    const markup = renderToString(<App />);
 
     res.send(html({
       markup
