@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // Components
-import Home from '../components/home/Home';
+import Home from './home/components/Home';
 
 class App extends Component {
   render() {
