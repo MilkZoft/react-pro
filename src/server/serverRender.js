@@ -10,10 +10,22 @@ import html from './html';
 
 export default function serverRender() {
   return (req, res, next) => {
-    const markup = renderToString(<App />);
+    const context = {};
 
-    res.send(html({
-      markup
-    }));
+    const markup = renderToString(
+      <App
+        server
+        location={req.url}
+        context={context}
+      />
+    );
+
+    if (context.url) {
+      res.redirect(301, context.url);
+    } else {
+      res.send(html({
+        markup
+      }));
+    }
   };
 }

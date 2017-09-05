@@ -1,17 +1,36 @@
 // Dependencies
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom';
 
-// Components
-import Home from './home/components/Home';
+// Routes
+import routes from '../shared/routes';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Home />
-      </div>
+export default ({ server, location, context }) => {
+  const routesMap = routes.map((route, i) => <Route key={i} {...route} />);
+
+  // Client Router
+  let router = (
+    <BrowserRouter>
+      <Switch>
+        {routesMap}
+      </Switch>
+    </BrowserRouter>
+  );
+
+  // Server Router
+  if (server) {
+    router = (
+      <StaticRouter location={location} context={context}>
+        <Switch>
+          {routesMap}
+        </Switch>
+      </StaticRouter>
     );
   }
-}
 
-export default App;
+  return (
+    <div>
+      {router}
+    </div>
+  );
+};
