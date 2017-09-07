@@ -1,4 +1,3 @@
-
 // Available environments
 const environments = ['development', 'stage', 'qa', 'production'];
 
