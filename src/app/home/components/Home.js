@@ -9,7 +9,7 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.home}>
-        Home - <Link to="/about">About</Link>
+        Home - <Link to="/about">About</Link> - <Link to="/blog">Blog</Link>
       </div>
     );
   }
