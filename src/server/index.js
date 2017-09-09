@@ -19,6 +19,9 @@ import api from './api';
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+// Analyzer
+const isAnalyzer = process.env.ANALYZER === 'true';
+
 // Express app
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -64,7 +67,7 @@ if (isDevelopment) {
 
 // Listening
 app.listen(port, err => {
-  if (!err) {
+  if (!err && !isAnalyzer) {
     open(`http://localhost:${port}`);
   }
 });

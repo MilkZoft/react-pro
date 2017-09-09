@@ -2,9 +2,13 @@
 import CompressionPlugin from 'compression-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import webpack from 'webpack';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 // Environment
 const isDevelopment = process.env.NODE_ENV !== 'production';
+
+// Analyzer
+const isAnalyzer = process.env.ANALYZER === 'true';
 
 export default type => {
   const plugins = [
@@ -13,6 +17,14 @@ export default type => {
       filename: '../../public/css/style.css'
     })
   ];
+
+  if (isAnalyzer) {
+    plugins.push(
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static'
+      })
+    );
+  }
 
   if (type === 'client') {
     plugins.push(
