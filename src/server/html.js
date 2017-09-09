@@ -3,7 +3,8 @@ export default function html(options) {
     app = 'main',
     title = 'Codejobs',
     stylesheet = '/css/style.css',
-    markup
+    markup,
+    initialState
   } = options;
 
   return `
@@ -18,6 +19,10 @@ export default function html(options) {
       </head>
       <body>
         <div id="root">${markup}</div>
+
+        <script>
+          window.initialState = ${JSON.stringify(initialState)};
+        </script>
         <script src="/app/${app}.bundle.js"></script>
       </body>
     </html>
