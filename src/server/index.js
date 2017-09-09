@@ -16,10 +16,23 @@ import webpackConfig from '../../webpack.config';
 // API
 import api from './api';
 
+// Environment
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 // Express app
 const app = express();
 const compiler = webpack(webpackConfig);
 const port = process.env.NODE_PORT || 3000;
+
+// GZip Compression just for Production
+if (!isDevelopment) {
+  app.get('*.js', (req, res, next) => {
+    req.url = `${req.url}.gz`;
+    res.set('Content-Encoding', 'gzip');
+
+    next();
+  });
+}
 
 // Public static
 app.use(express.static(path.join(__dirname, '../../public')));
@@ -34,10 +47,20 @@ app.use((req, res, next) => {
   return next();
 });
 
-// Hot Module Replacement
-app.use(webpackDevMiddleware(compiler));
-app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));
-app.use(webpackHotServerMiddleware(compiler));
+if (isDevelopment) {
+  // Hot Module Replacement
+  app.use(webpackDevMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));
+  app.use(webpackHotServerMiddleware(compiler));
+} else {
+  try {
+    const serverRender = require('../../dist/server.js').default;
+
+    app.use(serverRender());
+  } catch (e) {
+    throw e;
+  }
+}
 
 // Listening
 app.listen(port, err => {
