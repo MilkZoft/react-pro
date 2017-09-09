@@ -1,1 +1,1 @@
-export default () => 'eval-source-map';
+export default () => 'eval';
