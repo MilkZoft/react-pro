@@ -23,5 +23,6 @@ dist/
 public/css/style.css
 public/**/*.bundle.js
 public/**/*.bundle.js.gz
+public/app/report.html
 
 package-lock.json
