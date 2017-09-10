@@ -30,7 +30,7 @@ export default type => {
     plugins.push(
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        minChunks: (m) => /node_modules/.test(m.context)
+        minChunks: m => /node_modules/.test(m.context)
       })
     );
   }
