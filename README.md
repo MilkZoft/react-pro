@@ -41,8 +41,8 @@
   * Configuraciones de Express
   * Compresión GZip
   
-  # Solución de Problemas
+# Solución de Problemas
   
-  ## Windows
+## Windows
   
   Si utilizas Windows, debes configurar tu package.json de la siguiente manera: https://github.com/MilkZoft/react-pro/blob/master/package.windows.json
