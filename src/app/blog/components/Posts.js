@@ -6,7 +6,7 @@ import timeAgo from 'node-time-ago';
 import { isFirstRender } from '../../../shared/utils/data';
 
 // Styles
-import styles from './Posts.scss';
+import styles from './Posts.styl';
 
 class Posts extends Component {
   render() {
